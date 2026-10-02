@@ -98,9 +98,9 @@ struct DesertBackground: View {
         GeometryReader { geometry in
             let w = geometry.size.width
             let h = geometry.size.height
-
+            
             ZStack {
-
+                
                 LinearGradient(
                     colors: [
                         Color(red: 0.40, green: 0.57, blue: 0.64),
@@ -110,14 +110,14 @@ struct DesertBackground: View {
                     startPoint: .top,
                     endPoint: .bottom
                 )
-
+                
                 DesertMountains()
                     .fill(Color(red: 0.65, green: 0.59, blue: 0.50))
-
-                DesertDune(edgeHeight: 0.55, middleHeight: 0.48)
+                
+                DesertDune(edgeHeight: 0.55, middleHeight: 0.58)
                     .fill(Color(red: 0.89, green: 0.73, blue: 0.50))
                 
-                DesertDune(edgeHeight: 0.78, middleHeight: 0.83)
+                DesertDune(edgeHeight: 0.78, middleHeight: 0.75)
                     .fill(
                         LinearGradient(
                             colors: [
@@ -128,17 +128,17 @@ struct DesertBackground: View {
                             endPoint: .bottom
                         )
                     )
-
+                
                 DesertRock()
                     .fill(Color(red: 0.46, green: 0.36, blue: 0.27))
                     .frame(width: w * 0.11, height: h * 0.035)
                     .position(x: w * 0.11, y: h * 0.86)
-
+                
                 DesertRock()
                     .fill(Color(red: 0.55, green: 0.41, blue: 0.28))
                     .frame(width: w * 0.045, height: h * 0.018)
-                    .position(x: w * 0.20, y: h * 0.875)
-
+                    .position(x: w * 0.30, y: h * 0.875)
+                
                 DesertRock()
                     .fill(Color(red: 0.58, green: 0.44, blue: 0.30))
                     .frame(width: w * 0.075, height: h * 0.024)
@@ -147,15 +147,13 @@ struct DesertBackground: View {
             .frame(width: w, height: h)
             .clipped()
         }
-        .accessibilityHidden(true)
-        .allowsHitTesting(false)
     }
 }
 
 #Preview() {
     HStack(spacing: 0) {
         DesertBackground()
-            .frame(width: 260, height: 440)
+            .frame(width: 400, height: 900)
         
     }
 }
