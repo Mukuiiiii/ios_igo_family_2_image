@@ -1,5 +1,22 @@
 import SwiftUI
 
+private struct BB8HeadShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: rect.minX, y: rect.maxY))
+        path.addQuadCurve(
+            to: CGPoint(x: rect.midX, y: rect.minY),
+            control: CGPoint(x: rect.minX, y: rect.minY)
+        )
+        path.addQuadCurve(
+            to: CGPoint(x: rect.maxX, y: rect.maxY),
+            control: CGPoint(x: rect.maxX, y: rect.minY)
+        )
+        path.closeSubpath()
+        return path
+    }
+}
+
 struct BB8: View {
     private let orange = Color(red: 0.95, green: 0.48, blue: 0.10)
     private let shell = Color(red: 0.96, green: 0.97, blue: 0.97)
@@ -165,23 +182,6 @@ struct BB8: View {
             .position(x: 85, y: 86)
         }
         .frame(width: 170, height: 134)
-    }
-}
-
-private struct BB8HeadShape: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.addQuadCurve(
-            to: CGPoint(x: rect.midX, y: rect.minY),
-            control: CGPoint(x: rect.minX, y: rect.minY)
-        )
-        path.addQuadCurve(
-            to: CGPoint(x: rect.maxX, y: rect.maxY),
-            control: CGPoint(x: rect.maxX, y: rect.minY)
-        )
-        path.closeSubpath()
-        return path
     }
 }
 
