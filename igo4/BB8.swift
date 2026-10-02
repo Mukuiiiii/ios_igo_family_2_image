@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// 以兩段二次貝茲曲線繪製 BB-8 的圓頂頭部外框。
 private struct BB8HeadShape: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -17,7 +18,9 @@ private struct BB8HeadShape: Shape {
     }
 }
 
+/// 使用 SwiftUI 基本圖形組合而成的 BB-8 向量插圖。
 struct BB8: View {
+    // 集中定義角色色票，確保頭部、身體與面板的配色一致。
     private let orange = Color(red: 0.95, green: 0.48, blue: 0.10)
     private let shell = Color(red: 0.96, green: 0.97, blue: 0.97)
     private let metal = Color(red: 0.55, green: 0.59, blue: 0.62)
@@ -35,6 +38,7 @@ struct BB8: View {
         .accessibilityLabel("BB-8")
     }
 
+    /// 球形身體由外殼、接縫曲線及三個裝甲面板疊加而成。
     private var robotBody: some View {
         ZStack {
             Circle()
@@ -76,6 +80,7 @@ struct BB8: View {
         .overlay(Circle().stroke(metal.opacity(0.6), lineWidth: 2))
     }
 
+    /// 可重複使用的圓形裝甲面板，內部線寬與元件尺寸皆按容器縮放。
     private var bodyPanel: some View {
         GeometryReader { geometry in
             let size = min(geometry.size.width, geometry.size.height)
@@ -91,6 +96,7 @@ struct BB8: View {
                     .strokeBorder(orange, lineWidth: size * 0.035)
                     .padding(size * 0.2)
 
+                // 將同一矩形每 90 度旋轉一次，形成四向放射狀橘色接點。
                 ForEach(0..<4) { index in
                     Rectangle()
                         .fill(orange)
@@ -115,6 +121,7 @@ struct BB8: View {
         }
     }
 
+    /// 頭部包含天線、外殼飾帶、主鏡頭與輔助感測器。
     private var robotHead: some View {
         ZStack {
             Capsule()

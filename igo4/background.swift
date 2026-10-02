@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// 以兩段貝茲曲線建立左右對稱的沙丘上緣。
 private struct DesertWave: Shape {
     let edgeHeight: CGFloat
     let middleHeight: CGFloat
@@ -25,6 +26,7 @@ private struct DesertWave: Shape {
     }
 }
 
+/// 將沙丘上緣向畫面底部封閉，形成可填色的完整區域。
 private struct DesertDune: Shape {
     let edgeHeight: CGFloat
     let middleHeight: CGFloat
@@ -44,6 +46,7 @@ private struct DesertDune: Shape {
 
 private struct DesertMountains: Shape {
     func path(in rect: CGRect) -> Path {
+        // 使用 0...1 的標準化座標，讓山脈輪廓能等比例適應任意畫布。
         let points: [CGPoint] = [
             CGPoint(x: 0.00, y: 0.52),
             CGPoint(x: 0.08, y: 0.52),
@@ -92,6 +95,7 @@ private struct DesertRock: Shape {
         return path
     }
 }
+/// 由天空、遠山、前後沙丘與岩石依序疊成的響應式沙漠背景。
 struct DesertBackground: View {
     var body: some View {
 
@@ -99,6 +103,7 @@ struct DesertBackground: View {
             let w = geometry.size.width
             let h = geometry.size.height
             
+            // ZStack 的宣告順序即景深：先畫遠景，再覆蓋近景。
             ZStack {
                 
                 LinearGradient(
