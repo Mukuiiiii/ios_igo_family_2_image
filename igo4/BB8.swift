@@ -24,15 +24,25 @@ struct BB8: View {
     private let orange = Color(red: 0.95, green: 0.48, blue: 0.10)
     private let shell = Color(red: 0.96, green: 0.97, blue: 0.97)
     private let metal = Color(red: 0.55, green: 0.59, blue: 0.62)
+    private let bodyRotationSpeed = 90.0
 
     var body: some View {
-        ZStack {
-            
-            robotBody
-                .position(x: 150, y: 257)
-            robotHead
-                .rotationEffect(.degrees(-8))
-                .position(x: 140, y: 96)
+        TimelineView(.animation) { timeline in
+            // 負角度代表逆時針旋轉；每四秒取餘數可避免角度持續無限增長。
+            let elapsed = timeline.date.timeIntervalSinceReferenceDate
+                .truncatingRemainder(dividingBy: 4)
+            let bodyRotation = -elapsed * bodyRotationSpeed
+
+            ZStack {
+                robotBody
+                    .rotationEffect(.degrees(bodyRotation))
+                    .position(x: 150, y: 257)
+
+                // 頭部不跟著球形身體旋轉，維持 BB-8 滾動時的姿態。
+                robotHead
+                    .rotationEffect(.degrees(-8))
+                    .position(x: 140, y: 96)
+            }
         }
         .frame(width: 300, height: 380)
         .accessibilityElement(children: .ignore)
