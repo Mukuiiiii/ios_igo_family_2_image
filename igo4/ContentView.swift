@@ -7,14 +7,15 @@ struct ContentView: View {
         GeometryReader { geometry in
                     let width = geometry.size.width
                     let height = geometry.size.height
+            
+                    let tileAspectRatio: CGFloat = 260.0 / 440.0
+            
+                    let tileWidth = max(1, height * tileAspectRatio)
 
-                    // 每 390 點配置一塊背景；向上取整可避免寬螢幕留下空白。
                     let tileCount = max(
-                        1,
-                        Int((width / 390).rounded(.up))
+                            1,
+                            Int((width / tileWidth).rounded(.up))
                     )
-                    let tileWidth = width / CGFloat(tileCount)
-
                     // BB8 的原始畫布為 300 × 380；取寬高限制中的較小值以保持完整比例。
                     let robotScale = min(
                         width * 0.72 / 300,

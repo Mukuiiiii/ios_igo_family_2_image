@@ -123,17 +123,7 @@ struct DesertBackground: View {
                     .fill(Color(red: 0.89, green: 0.73, blue: 0.50))
                 
                 DesertDune(edgeHeight: 0.78, middleHeight: 0.75)
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color(red: 0.88, green: 0.68, blue: 0.43),
-                                Color(red: 0.69, green: 0.47, blue: 0.28)
-                            ],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                    )
-                
+                    .fill(Color(red: 0.76, green: 0.54, blue: 0.35))
                 DesertRock()
                     .fill(Color(red: 0.46, green: 0.36, blue: 0.27))
                     .frame(width: w * 0.11, height: h * 0.035)
@@ -158,7 +148,6 @@ struct DesertBackground: View {
 #Preview() {
     HStack(spacing: 0) {
         DesertBackground()
-            .frame(width: 400, height: 900)
-        
+            .frame(width: 260, height: 440)
     }
 }

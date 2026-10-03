@@ -27,6 +27,7 @@ struct BB8: View {
 
     var body: some View {
         ZStack {
+            
             robotBody
                 .position(x: 150, y: 257)
             robotHead
@@ -186,12 +187,12 @@ struct BB8: View {
             .frame(width: 170, height: 90)
             .clipShape(BB8HeadShape())
             .overlay(BB8HeadShape().stroke(metal, lineWidth: 2))
-            .position(x: 85, y: 86)
+            .position(x: 85, y: 85)
         }
         .frame(width: 170, height: 134)
     }
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    BB8()
+        BB8()
 }
